@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Personalized Resort Recommender</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Holiday Resort Recommender</h1>
+  </header>
+
+  <main>
+    <section class="form-section">
+      <h2>Tell Us What You Like</h2>
+      <form id="preferenceForm">
+        <label>Preferred Climate:
+          <select id="climate">
+            <option value="tropical">Tropical</option>
+            <option value="cold">Cold</option>
+            <option value="moderate">Moderate</option>
+          </select>
+        </label>
+
+        <label>Preferred Activities:
+          <select id="activity">
+            <option value="beach">Beach</option>
+            <option value="skiing">Skiing</option>
+            <option value="hiking">Hiking</option>
+          </select>
+        </label>
+
+        <label>Budget:
+          <select id="budget">
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+        </label>
+
+        <label>Preferred Region:
+          <select id="region">
+            <option value="asia">Asia</option>
+            <option value="europe">Europe</option>
+            <option value="america">America</option>
+          </select>
+        </label>
+
+        <button type="submit">Find Resorts</button>
+      </form>
+    </section>
+
+    <section id="results" class="results-section">
+      <h2>Recommended Resorts</h2>
+      <div id="recommendations"></div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

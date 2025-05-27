@@ -1,0 +1,71 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #eef7ff;
+    margin: 0;
+    padding: 0;
+  }
+  
+  header {
+    background-color: #0077b6;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  main {
+    padding: 2rem;
+  }
+  
+  .form-section {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    max-width: 500px;
+    margin: auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 1rem;
+  }
+  
+  select {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.3rem;
+  }
+  
+  button {
+    background-color: #023e8a;
+    color: white;
+    padding: 0.7rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .results-section {
+    margin-top: 2rem;
+    text-align: center;
+  }
+  
+  .resort-card {
+    background: white;
+    margin: 1rem auto;
+    padding: 1rem;
+    max-width: 500px;
+    border-left: 5px solid #0077b6;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  }
+
+  input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.3rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
