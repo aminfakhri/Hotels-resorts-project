@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up - Resort Recommender</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .form-section {
+      max-width: 400px;
+      margin: 50px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    .form-section h2 {
+      text-align: center;
+    }
+
+    .form-section label {
+      display: block;
+      margin-top: 15px;
+    }
+
+    .form-section input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+    }
+
+    .form-section button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 10px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .form-section button:hover {
+      background-color: #0056b3;
+    }
+
+    #errorMessage {
+      color: red;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    #successMessage {
+      color: green;
+      margin-top: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Sign Up for an Account</h1>
+  </header>
+
+  <main>
+    <section class="form-section">
+      <h2>Create Account</h2>
+      <form id="signupForm">
+        <label>Email:
+          <input type="email" id="signupEmail" required />
+        </label>
+
+        <label>Password:
+          <input type="password" id="signupPassword" required />
+        </label>
+
+        <label>Confirm Password:
+          <input type="password" id="confirmPassword" required />
+        </label>
+
+        <button type="submit">Sign Up</button>
+
+        <p id="errorMessage"></p>
+        <p id="successMessage"></p>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    document.getElementById("signupForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const email = document.getElementById("signupEmail").value;
+      const password = document.getElementById("signupPassword").value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
+      const errorMessage = document.getElementById("errorMessage");
+      const successMessage = document.getElementById("successMessage");
+
+      errorMessage.textContent = "";
+      successMessage.textContent = "";
+
+      if (password !== confirmPassword) {
+        errorMessage.textContent = "Passwords do not match.";
+        return;
+      }
+
+      // Save dummy user in localStorage
+      localStorage.setItem("user", JSON.stringify({ email }));
+      successMessage.textContent = "Sign up successful! Redirecting...";
+      
+      setTimeout(() => {
+        window.location.href = "index.html";
+      }, 1500);
+    });
+  </script>
+</body>
+</html>
