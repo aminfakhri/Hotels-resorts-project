@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Profile - Resort Recommender</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .profile-section {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .profile-section h2 {
+      color: #0077b6;
+      margin-bottom: 20px;
+    }
+
+    .profile-info {
+      margin-top: 20px;
+      font-size: 1.1em;
+    }
+
+    .profile-info p {
+      margin-bottom: 10px;
+    }
+
+    .profile-info strong {
+      color: #023e8a;
+    }
+
+    .back-button {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 10px 20px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .back-button:hover {
+      background-color: #0056b3;
+    }
+
+    /* Style for the logout button on profile page */
+    .profile-logout-button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #dc3545; /* Red color for logout */
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .profile-logout-button:hover {
+      background-color: #c82333;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Your Profile</h1>
+    <div class="auth-buttons" style="display: flex; justify-content: flex-end; width: 100%; padding-right: 20px;">
+      <button class="logout-button" id="logoutButtonProfile">Logout</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="profile-section">
+      <h2>Welcome, <span id="profileEmail"></span>!</h2>
+      <div class="profile-info">
+        <p>This is your personalized profile page.</p>
+        <p>Here you can view your details and potentially manage your preferences in the future.</p>
+        <p><strong>Email:</strong> <span id="displayEmail"></span></p>
+      </div>
+      <button class="back-button" onclick="location.href='index.html'">Go to Recommender</button>
+      </section>
+  </main>
+
+  <script>
+    const currentUser = JSON.parse(localStorage.getItem("user"));
+    if (currentUser) {
+      document.getElementById("profileEmail").textContent = currentUser.email;
+      document.getElementById("displayEmail").textContent = currentUser.email;
+    } else {
+      window.location.href = "login.html"; // Redirect to login if not logged in
+    }
+
+    // Logout functionality for the profile page
+    document.getElementById("logoutButtonProfile").addEventListener("click", function() {
+      localStorage.removeItem("user"); // Remove the logged-in user from local storage
+      window.location.href = "login.html"; // Redirect to the login page
+    });
+  </script>
+</body>
+</html>

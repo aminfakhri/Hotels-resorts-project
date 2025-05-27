@@ -30,6 +30,21 @@
     .auth-button:hover {
       background-color: #0056b3;
     }
+
+    /* Style for the logout button */
+    .logout-button {
+      padding: 8px 16px;
+      background-color: #dc3545; /* Red color for logout */
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-left: 10px; /* Space it out from other buttons */
+    }
+
+    .logout-button:hover {
+      background-color: #c82333;
+    }
   </style>
 </head>
 <body>
@@ -38,6 +53,7 @@
     <div class="auth-buttons">
       <button class="auth-button" onclick="location.href='login.html'">Login</button>
       <button class="auth-button" onclick="location.href='signup.html'">Sign Up</button>
+      <button class="logout-button" id="logoutButton">Logout</button>
     </div>
   </header>
 
@@ -87,6 +103,6 @@
     </section>
   </main>
 
-  <script src="script.js"></script>
+  <script src="scripts.js"></script>
 </body>
 </html>

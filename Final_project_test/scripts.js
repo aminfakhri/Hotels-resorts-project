@@ -36,8 +36,32 @@ const resorts = [
       budget: "low",
       region: "asia",
       description: "Adventure in the Thai jungles at affordable rates.",
+    },
+    {
+      name: "Caribbean Dive Paradise",
+      climate: "tropical",
+      activity: "beach",
+      budget: "high",
+      region: "america",
+      description: "Luxurious diving and beach experience in the Caribbean.",
+    },
+    {
+      name: "Andean Mountain Lodge",
+      climate: "cold",
+      activity: "hiking",
+      budget: "medium",
+      region: "america",
+      description: "Challenging hikes and stunning views in the Andes.",
     }
   ];
+
+  // Define weights for each preference. Higher weight means more important.
+  const preferenceWeights = {
+    climate: 0.4,
+    activity: 0.3,
+    budget: 0.2,
+    region: 0.1
+  };
   
   document.getElementById("preferenceForm").addEventListener("submit", function(event) {
     event.preventDefault();
@@ -46,21 +70,41 @@ const resorts = [
     const activity = document.getElementById("activity").value;
     const budget = document.getElementById("budget").value;
     const region = document.getElementById("region").value;
-  
-    const matches = resorts.filter(resort =>
-      resort.climate === climate &&
-      resort.activity === activity &&
-      resort.budget === budget &&
-      resort.region === region
-    );
+
+    const scoredResorts = resorts.map(resort => {
+      let score = 0;
+
+      if (resort.climate === climate) {
+        score += preferenceWeights.climate;
+      }
+      if (resort.activity === activity) {
+        score += preferenceWeights.activity;
+      }
+      if (resort.budget === budget) {
+        score += preferenceWeights.budget;
+      }
+      if (resort.region === region) {
+        score += preferenceWeights.region;
+      }
+
+      if (score === (preferenceWeights.climate + preferenceWeights.activity + preferenceWeights.budget + preferenceWeights.region)) {
+        score += 1.0;
+      }
+
+      return { ...resort, score: score };
+    });
+
+    const recommendations = scoredResorts
+      .filter(resort => resort.score > 0)
+      .sort((a, b) => b.score - a.score);
   
     const container = document.getElementById("recommendations");
     container.innerHTML = "";
   
-    if (matches.length === 0) {
+    if (recommendations.length === 0) {
       container.innerHTML = "<p>No resorts match your preferences. Try changing your filters.</p>";
     } else {
-      matches.forEach(resort => {
+      recommendations.forEach(resort => {
         const card = document.createElement("div");
         card.className = "resort-card";
         card.innerHTML = `
@@ -71,4 +115,9 @@ const resorts = [
       });
     }
   });
-  
+
+  // Logout functionality
+  document.getElementById("logoutButton").addEventListener("click", function() {
+    localStorage.removeItem("user"); // Remove the logged-in user from local storage
+    window.location.href = "login.html"; // Redirect to the login page
+  });
