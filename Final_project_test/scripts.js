@@ -129,7 +129,7 @@ const resorts = [
 
   responseBox.innerText = "Thinking...";
   
-  const openaiApiKey = "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"; // ← Replace this with your actual key
+  const openaiApiKey = apiKey: process.env.OPENAI_API_KEY; // ← Replace this with your actual key
 
   try {
     const res = await fetch("https://api.openai.com/v1/chat/completions", {
