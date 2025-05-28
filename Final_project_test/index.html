@@ -104,5 +104,12 @@
   </main>
 
   <script src="scripts.js"></script>
+  <!-- Chatbot UI -->
+<div id="chat-widget" style="position: fixed; bottom: 20px; right: 20px; width: 300px; background: white; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.2); padding: 10px;">
+  <h4>Resort Assistant</h4>
+  <input type="text" id="chatInput" placeholder="Ask about resorts..." style="width: 100%; padding: 6px;" />
+  <button onclick="askChatbot()" style="margin-top: 8px;">Ask</button>
+  <div id="chatResponse" style="margin-top: 10px; font-size: 0.9em;"></div>
+</div>
 </body>
 </html>

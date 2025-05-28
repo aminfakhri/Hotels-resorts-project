@@ -1,7 +1,7 @@
 // Redirect to login if not logged in
 const currentUser = JSON.parse(localStorage.getItem("user"));
 if (!currentUser) {
-  window.location.href = "login.html";
+  window.location.href = "index.html";
 }
 
 const resorts = [
@@ -121,3 +121,42 @@ const resorts = [
     localStorage.removeItem("user"); // Remove the logged-in user from local storage
     window.location.href = "login.html"; // Redirect to the login page
   });
+  async function askChatbot() {
+  const input = document.getElementById("chatInput").value.trim();
+  const responseBox = document.getElementById("chatResponse");
+
+  if (!input) return;
+
+  responseBox.innerText = "Thinking...";
+  
+  const openaiApiKey = "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"; // ← Replace this with your actual key
+
+  try {
+    const res = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${openaiApiKey}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        model: "gpt-3.5-turbo",
+        messages: [
+          {
+            role: "system",
+            content: "You are a helpful vacation assistant. Recommend holiday resorts based on user preferences like climate, region, activity, and budget."
+          },
+          {
+            role: "user",
+            content: input
+          }
+        ]
+      })
+    });
+
+    const data = await res.json();
+    responseBox.innerText = data.choices[0].message.content;
+  } catch (error) {
+    responseBox.innerText = "Sorry, I couldn't get a recommendation.";
+    console.error("Chatbot error:", error);
+  }
+}
